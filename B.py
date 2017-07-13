@@ -53,7 +53,9 @@ def mytarget(connect):
         pw = dict[user]
         print "user is " + user
     else:
-        print 'user error'
+        connect.send("no")
+        print "user error"
+        connect.close()
         exit(-1)
 
     # 解密得到pkA

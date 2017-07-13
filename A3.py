@@ -8,7 +8,7 @@ from Crypto.Cipher import PKCS1_v1_5 as Cipher_pkcs1_v1_5
 import base64
 
 # A、B共享口令字pw为 "123456"
-pw = "123456"
+pw = "qweasd"
 
 # AES
 class prpcrypt():
@@ -58,11 +58,10 @@ socket.connect(address)
 print "pkA: " + pkA
 
 # 发送自己的身份标识
-socket.send('A')
+socket.send('C')
 data = socket.recv(1024)
-if data == "no":
+if data != "yes":
     print "connect error"
-    socket.close()
     exit(-1)
 
 #发送用pw加密的pkA的密文
