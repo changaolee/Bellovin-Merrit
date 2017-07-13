@@ -14,6 +14,7 @@ dict = {}
 dict["A"] = "123456"
 dict["B"] = "qweasd"
 
+
 # AES
 class prpcrypt():
     def __init__(self, key):
@@ -99,14 +100,17 @@ def mytarget(connect):
         print "Authentication faild"
 
     while True:
-        data = connect.recv(1024)
+        try:
+            data = connect.recv(1024)
+        except Exception, e:
+            print "A user abnormal exit"
+            exit(-1)
         if data == "quit":
             print "User " + user + " quit!"
             break
         print "User " + user + " say: " + data
         connect.send("receive " + data)
     connect.close()
-    # socket.close()
 
 
 address = ('127.0.0.1', 31500)
@@ -119,4 +123,3 @@ while True:
     print 'got connected from', addr
     chat = threading.Thread(target=mytarget, args=(connect,))
     chat.start()
-socket.close()

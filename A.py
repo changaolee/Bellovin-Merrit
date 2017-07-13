@@ -107,6 +107,7 @@ socket.send(e)
 while True:
     data = raw_input(">")
     if data == "quit":
+        socket.send(data)
         break
     socket.send(data)
     data = socket.recv(1024)
