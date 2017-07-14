@@ -7,8 +7,8 @@ from Crypto.Cipher import AES
 from Crypto.Cipher import PKCS1_v1_5 as Cipher_pkcs1_v1_5
 import base64
 
-# A、B共享口令字pw为 "123456"
-pw = "123456"
+# A、B共享口令字pw
+pw = ""
 
 # AES
 class prpcrypt():
@@ -109,7 +109,11 @@ while True:
     if data == "quit":
         socket.send(data)
         break
-    socket.send(data)
+    try:
+        socket.send(data)
+    except Exception, e:
+        print "Server abnormal exit"
+        break
     data = socket.recv(1024)
     print "Server say: " + data
 
